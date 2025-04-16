@@ -1,8 +1,12 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const gallery = document.querySelector(".gallery");
 const loader = document.querySelector(".loader");
+let lightbox;
 
 export function createGallery(images){
-    gallery.innerHTML = images.map(({
+    const markup = images.map(({
         webformatURL,
         largeImageURL,
         tags,
@@ -12,7 +16,7 @@ export function createGallery(images){
         downloads
     }) => `
     <li class="gallery-item">
-    <a class="gallery-link" href="${largeImageURL}"><img class="gallery-image"src="${webformatURL} alt="${tags}"/>
+    <a class="gallery-link" href="${largeImageURL}"><img class="gallery-image"src="${webformatURL}" alt="${tags}"/>
     </a>
     <div class="info">
     <p class="info-item"><b>Likes</b> ${likes}</p>
@@ -23,6 +27,14 @@ export function createGallery(images){
     </li>`
     )
         .join("");
+    
+    gallery.insertAdjacentHTML('beforeend', markup);
+
+    if (!lightbox) {
+        lightbox = new SimpleLightbox('.gallery a')
+    } else {
+        lightbox.refresh();
+    }
 }
 
 export function clearGallery() {
