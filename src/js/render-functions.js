@@ -31,7 +31,10 @@ export function createGallery(images){
     gallery.insertAdjacentHTML('beforeend', markup);
 
     if (!lightbox) {
-        lightbox = new SimpleLightbox('.gallery a')
+        lightbox = new SimpleLightbox('.gallery a', {
+            captionsData: 'alt',
+            captionDelay: 250,
+        })
     } else {
         lightbox.refresh();
     }
@@ -44,7 +47,7 @@ export function clearGallery() {
 export function showLoader() {
     if (loader) {
         loader.classList.add("is-loading");
-        loader.textContent = "Loading..."
+        loader.textContent = "Loading images, please wait..."
     }
 }
 

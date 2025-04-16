@@ -3,31 +3,38 @@
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
 }
 
 .gallery-item {
-    border: 1px solid #eee;
-    border-radius: 4px;
+    border: 1px solid #808080;
     overflow: hidden;
 }
 
-.gallery-link {
+.gallery-link {    
     display: block;
 }
 
 .gallery-image {
-    width: 100%;
-    height: auto;
     display: block;
+    width: 360px;
+    height: 200px;
 }
 
 .info {
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4px;
 }
 
-info-item {
-    margin: 5px 0;
+.info-item {
+    color: #2E2F42;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 

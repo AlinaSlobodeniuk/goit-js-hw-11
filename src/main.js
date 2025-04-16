@@ -14,8 +14,8 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
     const query = input.value.trim();
     if (!query) {
-        iziToast.warning({
-            title: 'Warning',
+        iziToast.error({
+            title: 'Error',
             message: 'Please enter a search query.',
             position: 'topRight',
         });
