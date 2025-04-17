@@ -16,25 +16,10 @@ export default function getImagesByQuery(query) {
 
     return axios.get(`https://pixabay.com/api/?${params}`)
         .then(({ data }) => {
-            if (data.hits.length === 0) {
-                iziToast.error({
-                    title: 'Error',
-                    message: 'Sorry, there are no images matching your search query. Please try again!',
-                    position: 'topRight',
-                });
-                hideLoader();
-            } else {
-                createGallery(data.hits);
-                hideLoader();
-            }
+            return data.hits
         })
         .catch(error => {
             console.log(error);
-            hideLoader();
-            iziToast.error({
-                title: 'Error',
-                message: 'Failed to fetch images. Please try again later.',
-                position: 'topRight',
-            });
+            throw error;
         });
 }
