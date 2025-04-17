@@ -21,7 +21,32 @@ form.addEventListener('submit', (event) => {
         });
         return
     }
+    
     clearGallery();
     showLoader();
-    getImagesByQuery(query);
-})
+
+    getImagesByQuery(query)
+        .then((images) => {
+            if (images.length > 0) {
+                createGallery(images)
+            } else {
+                iziToast.info({
+                    title: 'No Results',
+                    message: 'Sorry, there are no images matching your search query. Please try again!',
+                    position: 'topRight',
+                });
+            }
+        })
+        .catch ((error) => {
+        console.log(error);
+        iziToast.error({
+            title: 'Error',
+            message: 'Failed to fetch images. Please try again later.',
+            position: 'topRight',
+        });
+    })
+        .finally(() => {
+            hideLoader()
+        });
+    
+});
